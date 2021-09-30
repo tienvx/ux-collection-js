@@ -1,0 +1,8 @@
+/.idea/
+/nbproject/
+/.vscode/
+/vendor/
+/composer.lock
+/.phpunit.result.cache
+/clover.xml
+/coveralls-upload.json

@@ -1,0 +1,53 @@
+{
+    "name": "tienvx/ux-collection-js",
+    "type": "symfony-bundle",
+    "description": "Symfony UX integration for collection form type",
+    "keywords": [
+        "symfony-ux",
+        "ux-collection-js"
+    ],
+    "homepage": "https://github.com/tienvx/ux-collection-js",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tien",
+            "email": "tien.xuan.vo@gmail.com"
+        },
+        {
+            "name": "Community contributions",
+            "homepage": "https://github.com/tienvx/ux-collection-js/contributors"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Tienvx\\Bundle\\UXCollectionJs\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tienvx\\Bundle\\UXCollectionJs\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^7.4|^8.0",
+        "symfony/config": "^4.4|^5.0",
+        "symfony/dependency-injection": "^4.4|^5.0",
+        "symfony/form": "^4.4|^5.0",
+        "symfony/http-kernel": "^4.4|^5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0-dev"
+        },
+        "thanks": {
+            "name": "symfony/ux",
+            "url": "https://github.com/symfony/ux"
+        }
+    }
+}

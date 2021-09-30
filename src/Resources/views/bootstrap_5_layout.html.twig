@@ -1,0 +1,88 @@
+{% block empty_collection %}
+    <div class="empty collection-empty">
+        <span class="badge badge-secondary">{{ 'label.empty'|trans }}</span>
+    </div>
+{% endblock empty_collection %}
+
+{% block collection_js_row %}
+    {% if prototype is defined and not prototype.rendered %}
+        {% set row_attr = row_attr|merge({ 'data-prototype': form_row(prototype) }) %}
+    {% endif %}
+
+    {%- set controllerName = 'tienvx--ux-collection-js--collection' -%}
+    {%- set dataController = (attr['data-controller']|default('') ~ ' ' ~ controllerName)|trim -%}
+    {% set row_attr = row_attr|merge({
+        'data-controller': dataController,
+        'data-'~ controllerName ~ '-allow-add': allow_add ? 'true' : 'false',
+        'data-'~ controllerName ~ '-allow-delete': allow_delete ? 'true' : 'false',
+        'data-'~ controllerName ~ '-allow-move-up': allow_move_up ? 'true' : 'false',
+        'data-'~ controllerName ~ '-allow-move-down': allow_move_down ? 'true' : 'false',
+    }) %}
+
+    {{ block('form_row') }}
+{% endblock collection_js_row %}
+
+{% block collection_js_widget %}
+    {# the "is iterable" check is needed because if an object implements __toString() and
+               returns an empty string, "is empty" returns true even if it's not a collection #}
+    {% set isEmptyCollection = value is null or (value is iterable and value is empty) %}
+
+    <div class="collection-js">
+        {% if isEmptyCollection %}
+            {{ block('empty_collection') }}
+        {% else %}
+            <div class="accordion">
+                {{ block('form_widget') }}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if allow_add|default(false) %}
+        <button type="button" class="btn btn-link collection-js-add-btn">
+            <i class="fa fa-plus pr-1"></i>
+            {{ 'action.add_new_item'|trans }}
+        </button>
+    {% endif %}
+{% endblock collection_js_widget %}
+
+{% block collection_js_entry_widget %}
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <h5 class="m-0">{{ value|string }}</h5>
+            <div>
+                <button class="accordion-button {{ render_expanded ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ id }}-contents">
+                    <i class="fas fw fa-chevron-right form-collection-item-collapse-marker"></i>
+                </button>
+                {% if allow_add %}
+                    <button type="button" class="btn btn-sm btn-outline-primary ml-2 collection-js-elem-add"
+                            title="{{ 'action.add_new_item'|trans }}">
+                        <i class="far fa-plus"></i>
+                    </button>
+                {% endif %}
+                {% if allow_move_up %}
+                    <button type="button" class="btn btn-sm btn-outline-secondary ml-2 collection-js-elem-up"
+                            title="{{ 'action.move_item_up'|trans }}">
+                        <i class="far fa-sort-up"></i>
+                    </button>
+                {% endif %}
+                {% if allow_move_down %}
+                    <button type="button" class="btn btn-sm btn-outline-secondary ml-2 collection-js-elem-down"
+                            title="{{ 'action.move_item_down'|trans }}">
+                        <i class="far fa-sort-down"></i>
+                    </button>
+                {% endif %}
+                {% if allow_delete %}
+                    <button type="button" class="btn btn-sm btn-outline-danger ml-2 collection-js-elem-remove"
+                            title="{{ 'action.remove_item'|trans }}">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                {% endif %}
+            </div>
+        </h2>
+        <div id="{{ id }}-contents" class="accordion-collapse collapse {{ render_expanded ? 'show' }}">
+            <div class="accordion-body">
+                {{ form_widget(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock collection_js_entry_widget %}
