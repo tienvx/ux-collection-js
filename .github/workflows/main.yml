@@ -15,7 +15,7 @@ jobs:
       with:
         php-version: ${{ matrix.php-versions }}
         coverage: pcov
-        tools: phpstan, phpcs, php-cs-fixer:3, phpunit, composer:v2
+        tools: phpstan, php-cs-fixer:3, phpunit, composer:v2
         #extensions: mbstring, intl
 
     - name: Checkout
@@ -23,9 +23,6 @@ jobs:
 
     - name: Install
       run: composer install
-
-    - name: Run PHP CS
-      run: phpcs --standard=PSR12 src tests
 
     - name: Run PHP CS Fixer
       run: php-cs-fixer fix --diff --dry-run
