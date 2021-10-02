@@ -1,4 +1,4 @@
-# UX Collection JS
+# UX Collection JS  [![Build Status][actions_badge]][actions_link] [![Coverage Status][coveralls_badge]][coveralls_link]
 
 UX collection JS is a Symfony bundle providing Symfony UX integration for collection form type with the help from [Symfony Collection JS](https://github.com/ruano-a/symfonyCollectionJs) library.
 
@@ -23,7 +23,7 @@ Use the new CollectionType class defined by this bundle:
 
 ```php
 // ...
-use Tienvx\Bundle\UXCollection\Form\CollectionJsType;
+use Tienvx\UX\CollectionJs\Form\CollectionJsType;
 
 class TaskType extends AbstractType
 {
@@ -37,6 +37,7 @@ class TaskType extends AbstractType
                 'allow_remove' => true,
                 'allow_move_up' => true,
                 'allow_move_down' => true,
+                'render_expanded' => false,
                 'prototype' => true,
             ])
             // ...
@@ -54,3 +55,9 @@ Please make sure to update tests as appropriate.
 
 ## License
 [MIT](LICENSE)
+
+[actions_badge]: https://github.com/tienvx/ux-collection-js/workflows/main/badge.svg
+[actions_link]: https://github.com/tienvx/ux-collection-js/actions
+
+[coveralls_badge]: https://coveralls.io/repos/tienvx/ux-collection-js/badge.svg?branch=master&service=github
+[coveralls_link]: https://coveralls.io/github/tienvx/ux-collection-js?branch=master

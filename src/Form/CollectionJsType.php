@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tienvx\Bundle\UXCollectionJs\Form;
+namespace Tienvx\UX\CollectionJs\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
