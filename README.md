@@ -59,5 +59,5 @@ Please make sure to update tests as appropriate.
 [actions_badge]: https://github.com/tienvx/ux-collection-js/workflows/main/badge.svg
 [actions_link]: https://github.com/tienvx/ux-collection-js/actions
 
-[coveralls_badge]: https://coveralls.io/repos/tienvx/ux-collection-js/badge.svg?branch=master&service=github
-[coveralls_link]: https://coveralls.io/github/tienvx/ux-collection-js?branch=master
+[coveralls_badge]: https://coveralls.io/repos/tienvx/ux-collection-js/badge.svg?branch=main&service=github
+[coveralls_link]: https://coveralls.io/github/tienvx/ux-collection-js?branch=main
