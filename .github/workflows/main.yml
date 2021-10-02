@@ -1,0 +1,45 @@
+name: main
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['7.4', '8.0']
+    name: PHP ${{ matrix.php-versions }}
+    steps:
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        coverage: pcov
+        tools: phpstan, phpcs, php-cs-fixer:3, phpunit, composer:v2
+        #extensions: mbstring, intl
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install
+      run: composer install
+
+    - name: Run PHP CS
+      run: phpcs --standard=PSR12 src tests
+
+    - name: Run PHP CS Fixer
+      run: php-cs-fixer fix --diff --dry-run
+
+    - name: Run PHPStan
+      run: phpstan analyse src tests
+
+    - name: Test & Generate Code Coverage
+      run: phpunit
+
+    - name: Upload coverage results to Coveralls
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        composer global require php-coveralls/php-coveralls
+        php-coveralls --coverage_clover=clover.xml -v
+      if: matrix.php-versions == '7.4'

@@ -23,7 +23,7 @@ Use the new CollectionType class defined by this bundle:
 
 ```php
 // ...
-use Tienvx\Bundle\UXCollection\Form\CollectionJsType;
+use Tienvx\UX\CollectionJs\Form\CollectionJsType;
 
 class TaskType extends AbstractType
 {
@@ -37,6 +37,7 @@ class TaskType extends AbstractType
                 'allow_remove' => true,
                 'allow_move_up' => true,
                 'allow_move_down' => true,
+                'render_expanded' => false,
                 'prototype' => true,
             ])
             // ...

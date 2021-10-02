@@ -1,6 +1,8 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
+    ->exclude('Resources/assets/dist')
+    ->exclude('Resources/assets/node_modules')
     ->in(__DIR__.'/src')
     ->in(__DIR__.'/tests')
 ;
