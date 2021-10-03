@@ -48,6 +48,14 @@ class TaskType extends AbstractType
 }
 ```
 
+Then you need to set the form theme:
+```yaml
+# config/packages/twig.yaml
+twig:
+  # For bootstrap for example
+  form_themes: ['@CollectionJs/bootstrap_5_layout.html.twig']
+```
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
