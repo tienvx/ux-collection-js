@@ -13,10 +13,10 @@
     {%- set dataController = (attr['data-controller']|default('') ~ ' ' ~ controllerName)|trim -%}
     {% set row_attr = row_attr|merge({
         'data-controller': dataController,
-        ('data-'~ controllerName ~ '-allow-add'): allow_add ? 'true' : 'false',
-        ('data-'~ controllerName ~ '-allow-delete'): allow_delete ? 'true' : 'false',
-        ('data-'~ controllerName ~ '-allow-move-up'): allow_move_up ? 'true' : 'false',
-        ('data-'~ controllerName ~ '-allow-move-down'): allow_move_down ? 'true' : 'false',
+        ('data-'~ controllerName ~ '-allow-add-value'): allow_add ? 'true' : 'false',
+        ('data-'~ controllerName ~ '-allow-delete-value'): allow_delete ? 'true' : 'false',
+        ('data-'~ controllerName ~ '-allow-move-up-value'): allow_move_up ? 'true' : 'false',
+        ('data-'~ controllerName ~ '-allow-move-down-value'): allow_move_down ? 'true' : 'false',
     }) %}
 
     {{ block('form_row') }}
