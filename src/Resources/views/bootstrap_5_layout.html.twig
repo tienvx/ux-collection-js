@@ -1,8 +1,4 @@
 {% block collection_js_row %}
-    {% if prototype is defined and not prototype.rendered %}
-        {% set row_attr = row_attr|merge({ 'data-prototype': form_row(prototype) }) %}
-    {% endif %}
-
     {%- set controllerName = 'tienvx--ux-collection-js--collection' -%}
     {%- set dataController = (attr['data-controller']|default('') ~ ' ' ~ controllerName)|trim -%}
     {% set row_attr = row_attr|merge({
@@ -18,7 +14,7 @@
 {% endblock collection_js_row %}
 
 {% block collection_js_widget %}
-    <div class="accordion collection-js-root">
+    <div class="accordion collection-js-root" data-prototype="{{ form_row(prototype) | e }}">
         {{ block('form_widget') }}
     </div>
 
