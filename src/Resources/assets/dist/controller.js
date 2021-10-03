@@ -55,7 +55,7 @@ var _default = /*#__PURE__*/function (_Controller) {
     value: function connect() {
       var options = {
         call_post_add_on_init: false,
-        prototype_name: this.prototypeNameValue
+        prototype_name: this.prototypeNameValue || '__name__'
       };
 
       if (this.allowAddValue) {
@@ -97,8 +97,5 @@ _defineProperty(_default, "values", {
   allowDelete: Boolean,
   allowMoveUp: Boolean,
   allowMoveDown: Boolean,
-  prototypeName: {
-    type: String,
-    "default": '__name__'
-  }
+  prototypeName: String
 });

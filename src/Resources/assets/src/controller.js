@@ -9,13 +9,13 @@ export default class extends Controller {
         allowDelete: Boolean,
         allowMoveUp: Boolean,
         allowMoveDown: Boolean,
-        prototypeName: { type: String, default: '__name__' }
+        prototypeName: String
     };
 
     connect() {
         let options = {
             call_post_add_on_init: false,
-            prototype_name: this.prototypeNameValue,
+            prototype_name: this.prototypeNameValue || '__name__',
         };
         if (this.allowAddValue) {
             options = {
