@@ -1,9 +1,3 @@
-{% block empty_collection %}
-    <div class="empty collection-empty">
-        <span class="badge badge-secondary">{{ 'label.empty'|trans }}</span>
-    </div>
-{% endblock empty_collection %}
-
 {% block collection_js_row %}
     {% if prototype is defined and not prototype.rendered %}
         {% set row_attr = row_attr|merge({ 'data-prototype': form_row(prototype) }) %}
@@ -24,18 +18,8 @@
 {% endblock collection_js_row %}
 
 {% block collection_js_widget %}
-    {# the "is iterable" check is needed because if an object implements __toString() and
-               returns an empty string, "is empty" returns true even if it's not a collection #}
-    {% set isEmptyCollection = value is null or (value is iterable and value is empty) %}
-
-    <div class="collection-js">
-        {% if isEmptyCollection %}
-            {{ block('empty_collection') }}
-        {% else %}
-            <div class="accordion">
-                {{ block('form_widget') }}
-            </div>
-        {% endif %}
+    <div class="accordion">
+        {{ block('form_widget') }}
     </div>
 
     {% if allow_add|default(false) %}
@@ -48,7 +32,7 @@
 
 {% block collection_js_entry_widget %}
     <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
+        <h2 class="accordion-header">
             <h5 class="m-0">{{ value }}</h5>
             <div>
                 <button class="accordion-button {{ render_expanded ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ id }}-contents">
