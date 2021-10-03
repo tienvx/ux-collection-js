@@ -20,7 +20,7 @@
     },
     "peerDependencies": {
         "stimulus": "^2.0.0",
-        "symfony-collection-js": "^4.2.0-js-only"
+        "symfony-collection-js": "4.2.0-js-only"
     },
     "devDependencies": {
         "@babel/cli": "^7.12.1",
