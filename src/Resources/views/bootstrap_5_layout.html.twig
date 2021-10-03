@@ -17,6 +17,7 @@
         ('data-'~ controllerName ~ '-allow-delete-value'): allow_delete ? 'true' : 'false',
         ('data-'~ controllerName ~ '-allow-move-up-value'): allow_move_up ? 'true' : 'false',
         ('data-'~ controllerName ~ '-allow-move-down-value'): allow_move_down ? 'true' : 'false',
+        ('data-'~ controllerName ~ '-prototype-name-value'): prototype_name ? '__name__',
     }) %}
 
     {{ block('form_row') }}
