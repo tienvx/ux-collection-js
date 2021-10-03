@@ -1,9 +1,6 @@
 <?php
 
 return [
-    'label' => [
-        'empty' => 'Empty',
-    ],
     'action' => [
         'add_new_item' => 'Add a new item',
         'move_item_up' => 'Move item up',
