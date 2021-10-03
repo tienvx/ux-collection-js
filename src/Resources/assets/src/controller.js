@@ -43,6 +43,6 @@ export default class extends Controller {
             };
         }
 
-        formCollection(this.element, options);
+        formCollection(this.element.querySelector('.collection-js-root'), options);
     }
 }

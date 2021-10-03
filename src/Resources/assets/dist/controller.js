@@ -83,7 +83,7 @@ var _default = /*#__PURE__*/function (_Controller) {
         });
       }
 
-      (0, _symfonyCollectionJs["default"])(this.element, options);
+      (0, _symfonyCollectionJs["default"])(this.element.querySelector('.collection-js-root'), options);
     }
   }]);
 
