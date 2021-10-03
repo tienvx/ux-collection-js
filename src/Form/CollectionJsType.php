@@ -48,6 +48,7 @@ class CollectionJsType extends AbstractType
             'allow_move_up' => $options['allow_move_up'],
             'allow_move_down' => $options['allow_move_down'],
             'render_expanded' => $options['render_expanded'],
+            'prototype_name' => $options['prototype_name'],
         ]);
     }
 
