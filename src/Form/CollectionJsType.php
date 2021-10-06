@@ -36,6 +36,13 @@ class CollectionJsType extends AbstractType
             'allow_move_up' => false,
             'allow_move_down' => false,
             'render_expanded' => false,
+            'entry_options' => function (OptionsResolver $entryOptionsResolver) {
+                $entryOptionsResolver
+                    ->setDefaults([
+                        'label' => false,
+                        'block_prefix' => 'collection_js_entry',
+                    ]);
+            },
         ]);
     }
 
