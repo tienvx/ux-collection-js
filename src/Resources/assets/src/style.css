@@ -2,8 +2,8 @@
     padding-right: 106px;
 }
 
-.collection-js-elem-add, .collection-js-elem-up, .collection-js-elem-down, .collection-js-elem-remove {
+.collection-js-actions {
     position: absolute;
-    right: 5px;
-    top: 3px;
+    right: 0px;
+    top: 0px;
 }
