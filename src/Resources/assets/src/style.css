@@ -1,0 +1,9 @@
+.form-group.collection-js.field-collection .accordion-header {
+    padding-right: 106px;
+}
+
+.collection-js-elem-add, .collection-js-elem-up, .collection-js-elem-down, .collection-js-elem-remove {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+}
