@@ -9,6 +9,9 @@
         ('data-'~ controllerName ~ '-allow-move-down-value'): allow_move_down ? 'true' : 'false',
         ('data-'~ controllerName ~ '-prototype-name-value'): prototype_name ? '__name__',
     }) %}
+    {% if ea is defined %}
+        {% set row_attr = row_attr|merge({class: (attr.class|default('collection-js') ~ ' field-collection')|trim}) %}
+    {% endif %}
 
     {{ block('form_row') }}
 {% endblock collection_js_row %}
@@ -30,38 +33,38 @@
 
 {% block collection_js_entry_widget %}
     <div class="accordion-item">
-        <div class="accordion-header d-flex align-items-center justify-content-between">
-            <h5 class="m-0">{{ value }}</h5>
-            <div class="btn-group" role="group" aria-label="Accordion header buttons group">
+        <h2 class="accordion-header">
+            <button class="accordion-button {{ form_parent(form).vars.render_expanded ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ id }}-contents">
+                <i class="fas fw fa-chevron-right form-collection-item-collapse-marker"></i>
+                {{ value }}
+            </button>
+            {% apply spaceless %}
                 {% if form_parent(form).vars.allow_add %}
-                    <button type="button" class="btn btn-outline-primary ml-2 collection-js-elem-add"
+                    <button type="button" class="btn btn-link btn-link-primary collection-js-elem-add"
                             title="{{ 'action.add_new_item'|trans }}">
                         <i class="fa fa-plus"></i>
                     </button>
                 {% endif %}
                 {% if form_parent(form).vars.allow_move_up %}
-                    <button type="button" class="btn btn-outline-secondary ml-2 collection-js-elem-up"
+                    <button type="button" class="btn btn-link btn-link-secondary collection-js-elem-up"
                             title="{{ 'action.move_item_up'|trans }}">
                         <i class="fa fa-sort-up"></i>
                     </button>
                 {% endif %}
                 {% if form_parent(form).vars.allow_move_down %}
-                    <button type="button" class="btn btn-outline-secondary ml-2 collection-js-elem-down"
+                    <button type="button" class="btn btn-link btn-link-secondary collection-js-elem-down"
                             title="{{ 'action.move_item_down'|trans }}">
                         <i class="fa fa-sort-down"></i>
                     </button>
                 {% endif %}
                 {% if form_parent(form).vars.allow_delete %}
-                    <button type="button" class="btn btn-outline-danger ml-2 collection-js-elem-remove"
+                    <button type="button" class="btn btn-link btn-link-danger collection-js-elem-remove"
                             title="{{ 'action.remove_item'|trans }}">
                         <i class="fa fa-trash-alt"></i>
                     </button>
                 {% endif %}
-            </div>
-            <a class="accordion-button {{ form_parent(form).vars.render_expanded ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ id }}-contents">
-                <i class="fas fw fa-chevron-right form-collection-item-collapse-marker"></i>
-            </a>
-        </div>
+            {% endapply %}
+        </h2>
         <div id="{{ id }}-contents" class="accordion-collapse collapse {{ form_parent(form).vars.render_expanded ? 'show' }}">
             <div class="accordion-body">
                 {{ form_widget(form) }}
