@@ -37,7 +37,15 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _classPrivateMethodInitSpec(obj, privateSet) { _checkPrivateRedeclaration(obj, privateSet); privateSet.add(obj); }
+
+function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
+
+var _dispatchCollectionJsEvent = /*#__PURE__*/new WeakSet();
 
 var _default = /*#__PURE__*/function (_Controller) {
   _inherits(_default, _Controller);
@@ -45,16 +53,56 @@ var _default = /*#__PURE__*/function (_Controller) {
   var _super = _createSuper(_default);
 
   function _default() {
+    var _this;
+
     _classCallCheck(this, _default);
 
-    return _super.apply(this, arguments);
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _classPrivateMethodInitSpec(_assertThisInitialized(_this), _dispatchCollectionJsEvent);
+
+    return _this;
   }
 
   _createClass(_default, [{
     key: "connect",
     value: function connect() {
+      var _self = this;
+
       var options = {
-        call_post_add_on_init: false,
+        call_post_add_on_init: this.callPostAddOnInitValue,
+        post_add: function post_add(new_elem, context, index) {
+          _classPrivateMethodGet(_self, _dispatchCollectionJsEvent, _dispatchCollectionJsEvent2).call(_self, 'post-add', {
+            new_elem: new_elem,
+            context: context,
+            index: index
+          });
+        },
+        post_delete: function post_delete(delete_elem, context, index) {
+          _classPrivateMethodGet(_self, _dispatchCollectionJsEvent, _dispatchCollectionJsEvent2).call(_self, 'post-delete', {
+            delete_elem: delete_elem,
+            context: context,
+            index: index
+          });
+        },
+        post_up: function post_up(elem, switched_elem, index) {
+          _classPrivateMethodGet(_self, _dispatchCollectionJsEvent, _dispatchCollectionJsEvent2).call(_self, 'post-up', {
+            elem: elem,
+            switched_elem: switched_elem,
+            index: index
+          });
+        },
+        post_down: function post_down(elem, switched_elem, index) {
+          _classPrivateMethodGet(_self, _dispatchCollectionJsEvent, _dispatchCollectionJsEvent2).call(_self, 'post-down', {
+            elem: elem,
+            switched_elem: switched_elem,
+            index: index
+          });
+        },
         prototype_name: this.prototypeNameValue || '__name__'
       };
 
@@ -66,21 +114,15 @@ var _default = /*#__PURE__*/function (_Controller) {
       }
 
       if (this.allowDeleteValue) {
-        options = _objectSpread(_objectSpread({}, options), {}, {
-          btn_delete_selector: '.collection-js-elem-remove'
-        });
+        options.btn_delete_selector = '.collection-js-elem-remove';
       }
 
       if (this.allowMoveUpValue) {
-        options = _objectSpread(_objectSpread({}, options), {}, {
-          btn_up_selector: '.collection-js-elem-up'
-        });
+        options.btn_up_selector = '.collection-js-elem-up';
       }
 
       if (this.allowMoveDownValue) {
-        options = _objectSpread(_objectSpread({}, options), {}, {
-          btn_down_selector: '.collection-js-elem-down'
-        });
+        options.btn_down_selector = '.collection-js-elem-down';
       }
 
       (0, _symfonyCollectionJs["default"])(this.element.querySelector('.collection-js-root'), options);
@@ -92,10 +134,20 @@ var _default = /*#__PURE__*/function (_Controller) {
 
 exports["default"] = _default;
 
+function _dispatchCollectionJsEvent2(event, detail) {
+  // Dispatch event like it was dispatched by https://github.com/stimulus-use/stimulus-use/blob/main/docs/use-dispatch.md
+  this.element.dispatchEvent(new CustomEvent("".concat(this.identifier, ":").concat(event), {
+    bubbles: true,
+    cancelable: true,
+    detail: detail
+  }));
+}
+
 _defineProperty(_default, "values", {
   allowAdd: Boolean,
   allowDelete: Boolean,
   allowMoveUp: Boolean,
   allowMoveDown: Boolean,
-  prototypeName: String
+  prototypeName: String,
+  callPostAddOnInit: Boolean
 });
