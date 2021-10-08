@@ -9,6 +9,7 @@
         ('data-'~ controllerName ~ '-allow-move-up-value'): allow_move_up ? 'true' : 'false',
         ('data-'~ controllerName ~ '-allow-move-down-value'): allow_move_down ? 'true' : 'false',
         ('data-'~ controllerName ~ '-prototype-name-value'): prototype_name ? '__name__',
+        ('data-'~ controllerName ~ '-call-post-add-on-init-value'): call_post_add_on_init ? 'true' : 'false',
     }) %}
     {% if ea is defined %}
         {% set row_attr = row_attr|merge({class: (row_attr.class ~ ' field-collection')|trim}) %}

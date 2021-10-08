@@ -43,6 +43,7 @@ class CollectionJsType extends AbstractType
                         'block_prefix' => 'collection_js_entry',
                     ]);
             },
+            'call_post_add_on_init' => false,
         ]);
     }
 
@@ -56,6 +57,7 @@ class CollectionJsType extends AbstractType
             'allow_move_down' => $options['allow_move_down'],
             'render_expanded' => $options['render_expanded'],
             'prototype_name' => $options['prototype_name'],
+            'call_post_add_on_init' => $options['call_post_add_on_init'],
         ]);
     }
 
