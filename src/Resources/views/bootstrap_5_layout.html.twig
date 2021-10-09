@@ -21,7 +21,7 @@
 {% block collection_js_widget %}
     <div class="accordion collection-js-root" data-prototype="{{ form_widget(prototype) | e }}">
         {% for child in form|filter(child => not child.rendered) %}
-            {{- form_row(child) -}}
+            {{- form_widget(child) -}}
         {% endfor %}
     </div>
 
