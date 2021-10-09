@@ -52,8 +52,8 @@ export default class extends Controller {
     }
 
     #dispatchCollectionJsEvent(event, detail) {
-        // Dispatch event like it was dispatched by https://github.com/stimulus-use/stimulus-use/blob/main/docs/use-dispatch.md
-        this.element.dispatchEvent(new CustomEvent(`${this.identifier}:${event}`, {
+        const namespace = 'ux-collection-js';
+        this.element.dispatchEvent(new CustomEvent(`${namespace}:${event}`, {
             bubbles: true,
             cancelable: true,
             detail
