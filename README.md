@@ -37,7 +37,7 @@ class TaskType extends AbstractType
                 'allow_remove' => true,
                 'allow_move_up' => true,
                 'allow_move_down' => true,
-                'render_expanded' => false,
+                'call_post_add_on_init' => true,
                 'prototype' => true,
             ])
             // ...
