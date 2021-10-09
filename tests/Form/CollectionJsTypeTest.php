@@ -30,7 +30,7 @@ class CollectionJsTypeTest extends TypeTestCase
         $view = $form->createView();
         $this->assertFalse($view->vars['allow_move_up']);
         $this->assertFalse($view->vars['allow_move_down']);
-        $this->assertFalse($view->vars['render_expanded']);
+        $this->assertFalse($view->vars['call_post_add_on_init']);
     }
 
     public function testCustomOptions()
@@ -40,7 +40,7 @@ class CollectionJsTypeTest extends TypeTestCase
                 'entry_type' => TextType::class,
                 'allow_move_up' => true,
                 'allow_move_down' => true,
-                'render_expanded' => true,
+                'call_post_add_on_init' => true,
             ])
         ;
         $this->assertSame([
@@ -52,6 +52,6 @@ class CollectionJsTypeTest extends TypeTestCase
         $view = $form->createView();
         $this->assertTrue($view->vars['allow_move_up']);
         $this->assertTrue($view->vars['allow_move_down']);
-        $this->assertTrue($view->vars['render_expanded']);
+        $this->assertTrue($view->vars['call_post_add_on_init']);
     }
 }

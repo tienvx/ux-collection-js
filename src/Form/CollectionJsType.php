@@ -35,7 +35,6 @@ class CollectionJsType extends AbstractType
         $resolver->setDefaults([
             'allow_move_up' => false,
             'allow_move_down' => false,
-            'render_expanded' => false,
             'entry_options' => function (OptionsResolver $entryOptionsResolver) {
                 $entryOptionsResolver
                     ->setDefaults([
@@ -55,7 +54,6 @@ class CollectionJsType extends AbstractType
         $view->vars = array_replace($view->vars, [
             'allow_move_up' => $options['allow_move_up'],
             'allow_move_down' => $options['allow_move_down'],
-            'render_expanded' => $options['render_expanded'],
             'prototype_name' => $options['prototype_name'],
             'call_post_add_on_init' => $options['call_post_add_on_init'],
         ]);
