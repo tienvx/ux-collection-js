@@ -21,7 +21,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Install
+    - name: Install PHP dependencies
       run: composer install
 
     - name: Run PHP CS Fixer
@@ -40,3 +40,11 @@ jobs:
         composer global require php-coveralls/php-coveralls
         php-coveralls --coverage_clover=clover.xml -v
       if: matrix.php-versions == '7.4'
+
+    - name: Install JavaScript dependencies
+      working-directory: src/Resources/assets
+      run: yarn install
+
+    - name: Test JavaScript
+      working-directory: src/Resources/assets
+      run: yarn test --silent

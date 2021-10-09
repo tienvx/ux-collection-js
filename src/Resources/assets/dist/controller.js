@@ -135,8 +135,8 @@ var _default = /*#__PURE__*/function (_Controller) {
 exports["default"] = _default;
 
 function _dispatchCollectionJsEvent2(event, detail) {
-  // Dispatch event like it was dispatched by https://github.com/stimulus-use/stimulus-use/blob/main/docs/use-dispatch.md
-  this.element.dispatchEvent(new CustomEvent("".concat(this.identifier, ":").concat(event), {
+  var namespace = 'ux-collection-js';
+  this.element.dispatchEvent(new CustomEvent("".concat(namespace, ":").concat(event), {
     bubbles: true,
     cancelable: true,
     detail: detail
