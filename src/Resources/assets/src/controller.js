@@ -17,17 +17,17 @@ export default class extends Controller {
         const _self = this;
         let options = {
             call_post_add_on_init: this.callPostAddOnInitValue,
-            post_add: function(new_elem, context, index) {
-                _self.#dispatchCollectionJsEvent('post-add', {new_elem, context, index});
+            post_add: function (new_elem, context, index) {
+                _self.#dispatchCollectionJsEvent('post-add', { new_elem, context, index });
             },
-            post_delete: function(delete_elem, context, index) {
-                _self.#dispatchCollectionJsEvent('post-delete', {delete_elem, context, index});
+            post_delete: function (delete_elem, context, index) {
+                _self.#dispatchCollectionJsEvent('post-delete', { delete_elem, context, index });
             },
-            post_up: function(elem, switched_elem, index) {
-                _self.#dispatchCollectionJsEvent('post-up', {elem, switched_elem, index});
+            post_up: function (elem, switched_elem, index) {
+                _self.#dispatchCollectionJsEvent('post-up', { elem, switched_elem, index });
             },
-            post_down: function(elem, switched_elem, index) {
-                _self.#dispatchCollectionJsEvent('post-down', {elem, switched_elem, index});
+            post_down: function (elem, switched_elem, index) {
+                _self.#dispatchCollectionJsEvent('post-down', { elem, switched_elem, index });
             },
             prototype_name: this.prototypeNameValue || '__name__',
         };
@@ -39,10 +39,10 @@ export default class extends Controller {
             };
         }
         if (this.allowDeleteValue) {
-            options.btn_delete_selector ='.collection-js-elem-remove';
+            options.btn_delete_selector = '.collection-js-elem-remove';
         }
         if (this.allowMoveUpValue) {
-            options.btn_up_selector ='.collection-js-elem-up';
+            options.btn_up_selector = '.collection-js-elem-up';
         }
         if (this.allowMoveDownValue) {
             options.btn_down_selector = '.collection-js-elem-down';
@@ -53,10 +53,12 @@ export default class extends Controller {
 
     #dispatchCollectionJsEvent(event, detail) {
         const namespace = 'ux-collection-js';
-        this.element.dispatchEvent(new CustomEvent(`${namespace}:${event}`, {
-            bubbles: true,
-            cancelable: true,
-            detail
-        }));
+        this.element.dispatchEvent(
+            new CustomEvent(`${namespace}:${event}`, {
+                bubbles: true,
+                cancelable: true,
+                detail,
+            })
+        );
     }
 }

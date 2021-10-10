@@ -19,7 +19,10 @@
     "scripts": {
         "build": "babel src -d dist",
         "test": "babel src -d dist && jest",
-        "lint": "eslint src test"
+        "lint": "eslint src test --fix",
+        "format": "prettier {src,test}/*.js --write",
+        "check-lint": "yarn lint --no-fix",
+        "check-format": "yarn format --no-write --check"
     },
     "dependencies": {
         "symfony-collection-js": "4.2.0-js-only"
@@ -33,12 +36,45 @@
         "@babel/plugin-proposal-class-properties": "^7.12.1",
         "@babel/preset-env": "^7.12.7",
         "@symfony/stimulus-testing": "^1.1.0",
-        "stimulus": "^2.0.0"
+        "stimulus": "^2.0.0",
+        "@babel/eslint-parser": "^7.12.1",
+        "eslint": "^7.15.0",
+        "eslint-config-prettier": "^6.15.0",
+        "eslint-plugin-jest": "^24.1.3",
+        "prettier": "^2.2.1"
     },
     "jest": {
         "testRegex": "test/.*\\.test.js",
         "setupFilesAfterEnv": [
             "./test/setup.js"
         ]
+    },
+    "eslintConfig": {
+        "root": true,
+        "parser": "@babel/eslint-parser",
+        "extends": [
+            "eslint:recommended",
+            "prettier"
+        ],
+        "env": {
+            "browser": true
+        },
+        "overrides": [
+            {
+                "files": [
+                    "test/*.js"
+                ],
+                "extends": [
+                    "plugin:jest/recommended"
+                ]
+            }
+        ]
+    },
+    "prettier": {
+        "printWidth": 120,
+        "trailingComma": "es5",
+        "tabWidth": 4,
+        "jsxBracketSameLine": true,
+        "singleQuote": true
     }
 }
