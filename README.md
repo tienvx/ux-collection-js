@@ -9,7 +9,7 @@ UX Collection JS requires PHP 7.4+ and Symfony 4.4+.
 Install this bundle using Composer and Symfony Flex:
 
 ```sh
-composer require tienvx/ux-collection-js
+composer require tienvx/ux-collection-js:^1.0@alpha
 
 # Don't forget to install the JavaScript dependencies as well and compile
 yarn add --dev '@symfony/stimulus-bridge@^2.0.0'
@@ -19,26 +19,27 @@ yarn encore dev
 
 ## Usage
 
+### Symfony
+
 Use the new CollectionType class defined by this bundle:
 
 ```php
 // ...
 use Tienvx\UX\CollectionJs\Form\CollectionJsType;
 
-class TaskType extends AbstractType
+class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             // ...
-            ->add('tags', CollectionJsType::class, [
-                'entry_type' => TextType::class,
+            ->add('attachments', CollectionJsType::class, [
+                'entry_type' => FileType::class,
                 'allow_add' => true,
-                'allow_remove' => true,
+                'allow_delete' => true,
                 'allow_move_up' => true,
                 'allow_move_down' => true,
                 'call_post_add_on_init' => true,
-                'prototype' => true,
             ])
             // ...
         ;
@@ -48,13 +49,9 @@ class TaskType extends AbstractType
 }
 ```
 
-Then you need to set the form theme:
-```yaml
-# config/packages/twig.yaml
-twig:
-  # For bootstrap for example
-  form_themes: ['@CollectionJs/bootstrap_5_layout.html.twig']
-```
+### Easyadmin
+
+TBD
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
