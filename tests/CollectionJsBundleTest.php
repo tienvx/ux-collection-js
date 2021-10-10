@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Kernel;
 use Tienvx\UX\CollectionJs\Tests\Kernel\EmptyAppKernel;
 use Tienvx\UX\CollectionJs\Tests\Kernel\FrameworkAppKernel;
+use Tienvx\UX\CollectionJs\Tests\Kernel\TwigAppKernel;
 
 class CollectionJsBundleTest extends TestCase
 {
@@ -13,6 +14,7 @@ class CollectionJsBundleTest extends TestCase
     {
         yield 'empty' => [new EmptyAppKernel('test', true)];
         yield 'framework' => [new FrameworkAppKernel('test', true)];
+        yield 'twig' => [new TwigAppKernel('test', true)];
     }
 
     /**
@@ -22,5 +24,16 @@ class CollectionJsBundleTest extends TestCase
     {
         $kernel->boot();
         $this->assertArrayHasKey('CollectionJsBundle', $kernel->getBundles());
+    }
+
+    public function testFormThemeMerging()
+    {
+        $kernel = new TwigAppKernel('test', true);
+        $kernel->boot();
+        $this->assertEquals([
+            'form_div_layout.html.twig',
+            '@CollectionJs/bootstrap_5_layout.html.twig',
+            'form_theme.html.twig',
+        ], $kernel->getContainer()->getParameter('twig.form.resources'));
     }
 }
