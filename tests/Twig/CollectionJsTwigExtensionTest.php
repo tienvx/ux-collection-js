@@ -5,17 +5,22 @@ namespace Tienvx\UX\CollectionJs\Tests\Twig;
 use PHPUnit\Framework\TestCase;
 use Tienvx\UX\CollectionJs\Tests\Kernel\TwigAppKernel;
 use Twig\Environment;
+use Twig\TwigFilter;
 
 class CollectionJsTwigExtensionTest extends TestCase
 {
     /**
      * @dataProvider valueDataProvider
      */
-    public function testRepresentAsString($value, string $expected)
+    public function testRepresentAsString(?TwigFilter $filter, $value, string $expected)
     {
         $kernel = new TwigAppKernel('test', true);
         $kernel->boot();
         $container = $kernel->getContainer()->get('test.service_container');
+
+        if ($filter) {
+            $container->get(Environment::class)->addFilter($filter);
+        }
 
         $rendered = $container->get('test.collection_js.twig_extension')->representAsString(
             $container->get(Environment::class),
@@ -28,6 +33,7 @@ class CollectionJsTwigExtensionTest extends TestCase
     public function valueDataProvider(): array
     {
         $text = 'some text';
+        $textFromFilter = 'some text from filter';
         $object = new class($text) {
             private string $text;
 
@@ -41,15 +47,23 @@ class CollectionJsTwigExtensionTest extends TestCase
                 return $this->text;
             }
         };
+        $filter = new TwigFilter('ea_as_string', fn () => $textFromFilter);
 
         return [
-            [$text, $text],
-            [$object, $text],
-            [123, ''],
-            [[$text], ''],
-            [true, ''],
-            [false, ''],
-            [new \stdClass(), ''],
+            [$filter, $text, $textFromFilter],
+            [$filter, $object, $textFromFilter],
+            [$filter, 123, $textFromFilter],
+            [$filter, [$text], $textFromFilter],
+            [$filter, true, $textFromFilter],
+            [$filter, false, $textFromFilter],
+            [$filter, new \stdClass(), $textFromFilter],
+            [null, $text, $text],
+            [null, $object, $text],
+            [null, 123, ''],
+            [null, [$text], ''],
+            [null, true, ''],
+            [null, false, ''],
+            [null, new \stdClass(), ''],
         ];
     }
 }
