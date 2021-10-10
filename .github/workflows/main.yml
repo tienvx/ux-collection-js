@@ -3,48 +3,74 @@ name: main
 on: [push, pull_request]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php-versions: ['7.4', '8.0']
-    name: PHP ${{ matrix.php-versions }}
-    steps:
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-versions }}
-        coverage: pcov
-        tools: phpstan, php-cs-fixer:3, phpunit, composer:v2
-        #extensions: mbstring, intl
+    php-cs:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.0'
+                  tools: phpstan, php-cs-fixer:3, composer:v2
 
-    - name: Checkout
-      uses: actions/checkout@v2
+            - name: Checkout repository
+              uses: actions/checkout@v2
 
-    - name: Install PHP dependencies
-      run: composer install
+            - name: Install PHP dependencies
+              uses: ramsey/composer-install@v1
+              with:
+                  dependency-versions: 'locked'
 
-    - name: Run PHP CS Fixer
-      run: php-cs-fixer fix --diff --dry-run
+            - name: Run PHP CS Fixer
+              run: php-cs-fixer fix --diff --dry-run
 
-    - name: Run PHPStan
-      run: phpstan analyse src tests
+            - name: Run PHPStan
+              run: phpstan analyse src tests
 
-    - name: Test & Generate Code Coverage
-      run: phpunit
+    test-php:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php-versions: ['7.4', '8.0']
+                dependencies: [ 'lowest', 'locked', 'highest' ]
+        name: PHP ${{ matrix.php-versions }} with ${{ matrix.dependencies }} dependencies
+        steps:
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php-versions }}
+                  coverage: pcov
+                  tools: phpunit, composer:v2
 
-    - name: Upload coverage results to Coveralls
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        composer global require php-coveralls/php-coveralls
-        php-coveralls --coverage_clover=clover.xml -v
-      if: matrix.php-versions == '7.4'
+            - name: Checkout repository
+              uses: actions/checkout@v2
 
-    - name: Install JavaScript dependencies
-      working-directory: src/Resources/assets
-      run: yarn install
+            - name: Install PHP dependencies
+              uses: ramsey/composer-install@v1
+              with:
+                  dependency-versions: "${{ matrix.dependencies }}"
 
-    - name: Test JavaScript
-      working-directory: src/Resources/assets
-      run: yarn test --silent
+            - name: Test & Generate Code Coverage
+              run: phpunit
+
+            - name: Upload coverage results to Coveralls
+              env:
+                  COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  composer global require php-coveralls/php-coveralls
+                  php-coveralls --coverage_clover=clover.xml -v
+              if: matrix.php-versions == '8.0' && matrix.dependencies == 'locked'
+
+    test-js:
+        runs-on: ubuntu-latest
+        name: Javascript
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Install JavaScript dependencies
+              working-directory: src/Resources/assets
+              run: yarn install
+
+            - name: Test JavaScript
+              working-directory: src/Resources/assets
+              run: yarn test --silent
