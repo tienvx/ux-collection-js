@@ -31,6 +31,7 @@ class CollectionJsTypeTest extends TypeTestCase
         $this->assertFalse($view->vars['allow_move_up']);
         $this->assertFalse($view->vars['allow_move_down']);
         $this->assertFalse($view->vars['call_post_add_on_init']);
+        $this->assertSame('__name__', $view->vars['prototype_name']);
     }
 
     public function testCustomOptions()
@@ -41,6 +42,7 @@ class CollectionJsTypeTest extends TypeTestCase
                 'allow_move_up' => true,
                 'allow_move_down' => true,
                 'call_post_add_on_init' => true,
+                'prototype_name' => '__test__',
             ])
         ;
         $this->assertSame([
@@ -53,5 +55,6 @@ class CollectionJsTypeTest extends TypeTestCase
         $this->assertTrue($view->vars['allow_move_up']);
         $this->assertTrue($view->vars['allow_move_down']);
         $this->assertTrue($view->vars['call_post_add_on_init']);
+        $this->assertSame('__test__', $view->vars['prototype_name']);
     }
 }
