@@ -5,6 +5,7 @@ on: [push, pull_request]
 jobs:
     php-cs:
         runs-on: ubuntu-latest
+        name: PHP Coding Standards
         steps:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
@@ -25,6 +26,25 @@ jobs:
 
             - name: Run PHPStan
               run: phpstan analyse src tests
+
+    coding-style-js:
+        runs-on: ubuntu-latest
+        name: JS Coding Standards
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Install JavaScript dependencies
+              working-directory: src/Resources/assets
+              run: yarn install
+
+            - name: Check lint
+              working-directory: src/Resources/assets
+              run: yarn check-lint
+
+            - name: Check format
+              working-directory: src/Resources/assets
+              run: yarn check-format
 
     test-php:
         runs-on: ubuntu-latest

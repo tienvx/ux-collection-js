@@ -82,7 +82,10 @@ describe('CollectionJsController', () => {
 
     it('init', async () => {
         let dispatched = null;
-        getByTestId(container, 'container').addEventListener('ux-collection-js:post-add', (event) => (dispatched = event));
+        getByTestId(container, 'container').addEventListener(
+            'ux-collection-js:post-add',
+            (event) => (dispatched = event)
+        );
 
         await startStimulus();
 
@@ -95,7 +98,10 @@ describe('CollectionJsController', () => {
 
     it('add', async () => {
         let dispatched = null;
-        getByTestId(container, 'container').addEventListener('ux-collection-js:post-add', (event) => (dispatched = event));
+        getByTestId(container, 'container').addEventListener(
+            'ux-collection-js:post-add',
+            (event) => (dispatched = event)
+        );
 
         await startStimulus();
 
@@ -113,7 +119,10 @@ describe('CollectionJsController', () => {
 
     it('element add', async () => {
         let dispatched = null;
-        getByTestId(container, 'container').addEventListener('ux-collection-js:post-add', (event) => (dispatched = event));
+        getByTestId(container, 'container').addEventListener(
+            'ux-collection-js:post-add',
+            (event) => (dispatched = event)
+        );
 
         await startStimulus();
 
@@ -131,7 +140,10 @@ describe('CollectionJsController', () => {
 
     it('element delete', async () => {
         let dispatched = null;
-        getByTestId(container, 'container').addEventListener('ux-collection-js:post-delete', (event) => (dispatched = event));
+        getByTestId(container, 'container').addEventListener(
+            'ux-collection-js:post-delete',
+            (event) => (dispatched = event)
+        );
 
         await startStimulus();
 
@@ -150,7 +162,10 @@ describe('CollectionJsController', () => {
 
     it('element up', async () => {
         let dispatched = null;
-        getByTestId(container, 'container').addEventListener('ux-collection-js:post-up', (event) => (dispatched = event));
+        getByTestId(container, 'container').addEventListener(
+            'ux-collection-js:post-up',
+            (event) => (dispatched = event)
+        );
 
         await startStimulus();
 
@@ -169,7 +184,10 @@ describe('CollectionJsController', () => {
 
     it('element down', async () => {
         let dispatched = null;
-        getByTestId(container, 'container').addEventListener('ux-collection-js:post-down', (event) => (dispatched = event));
+        getByTestId(container, 'container').addEventListener(
+            'ux-collection-js:post-down',
+            (event) => (dispatched = event)
+        );
 
         await startStimulus();
 
