@@ -1,9 +1,4 @@
 .form-group.collection-js.field-collection .accordion-header {
-    padding-right: 106px;
-}
-
-.collection-js-actions {
-    position: absolute;
-    right: 0;
-    top: 0;
+    padding-right: 0;
+    display: flex;
 }
