@@ -1,4 +1,7 @@
 .form-group.collection-js.field-collection .accordion-header {
     padding-right: 0;
+}
+
+.form-group.collection-js .accordion-header {
     display: flex;
 }
