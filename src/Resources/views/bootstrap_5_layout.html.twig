@@ -1,73 +1,21 @@
-{% block collection_js_row %}
-    {%- set controllerName = 'tienvx--ux-collection-js--collection' -%}
-    {%- set dataController = (attr['data-controller']|default('') ~ ' ' ~ controllerName)|trim -%}
-    {% set row_attr = row_attr|merge({
-        'class': attr.class|default('') ~ ' collection-js',
-        'data-controller': dataController,
-        ('data-'~ controllerName ~ '-allow-add-value'): allow_add ? 'true' : 'false',
-        ('data-'~ controllerName ~ '-allow-delete-value'): allow_delete ? 'true' : 'false',
-        ('data-'~ controllerName ~ '-allow-move-up-value'): allow_move_up ? 'true' : 'false',
-        ('data-'~ controllerName ~ '-allow-move-down-value'): allow_move_down ? 'true' : 'false',
-        ('data-'~ controllerName ~ '-prototype-name-value'): prototype_name|default('__name__'),
-        ('data-'~ controllerName ~ '-call-post-add-on-init-value'): call_post_add_on_init ? 'true' : 'false',
-    }) %}
-    {% if ea is defined %}
-        {% set row_attr = row_attr|merge({class: (row_attr.class ~ ' field-collection')|trim}) %}
-    {% endif %}
+{% use "bootstrap_base_layout.html.twig" %}
 
-    {{ block('form_row') }}
-{% endblock collection_js_row %}
-
-{% block collection_js_widget %}
+{% block collection_js_accordion %}
     <div class="accordion collection-js-root" data-prototype="{{ form_widget(prototype) | e }}">
         {% for child in form|filter(child => not child.rendered) %}
             {{- form_widget(child) -}}
         {% endfor %}
     </div>
+{% endblock collection_js_accordion %}
 
-    {% if allow_add|default(false) %}
-        <button type="button" class="btn btn-link collection-js-add-btn">
-            <i class="fa fa-plus pr-1"></i>
-            {{ 'action.add_new_item'|trans }}
-        </button>
-    {% endif %}
-{% endblock collection_js_widget %}
-
-{% block collection_js_entry_widget %}
+{% block collection_js_accordion_item %}
     <div class="accordion-item">
         <h2 class="accordion-header">
             <button class="accordion-button {{ form.vars.valid ? 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ id }}-contents">
                 <i class="fas fw fa-chevron-right form-collection-item-collapse-marker"></i>
                 {{ value|collection_js_as_string }}
             </button>
-            <div class="btn-group collection-js-actions" role="group" aria-label="Actions">
-                {% apply spaceless %}
-                    {% if form_parent(form).vars.allow_add %}
-                        <button type="button" class="btn btn-link btn-link-primary collection-js-elem-add"
-                                title="{{ 'action.add_new_item'|trans }}">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                    {% endif %}
-                    {% if form_parent(form).vars.allow_move_up %}
-                        <button type="button" class="btn btn-link btn-link-secondary collection-js-elem-up"
-                                title="{{ 'action.move_item_up'|trans }}">
-                            <i class="fa fa-sort-up"></i>
-                        </button>
-                    {% endif %}
-                    {% if form_parent(form).vars.allow_move_down %}
-                        <button type="button" class="btn btn-link btn-link-secondary collection-js-elem-down"
-                                title="{{ 'action.move_item_down'|trans }}">
-                            <i class="fa fa-sort-down"></i>
-                        </button>
-                    {% endif %}
-                    {% if form_parent(form).vars.allow_delete %}
-                        <button type="button" class="btn btn-link btn-link-danger collection-js-elem-remove"
-                                title="{{ 'action.remove_item'|trans }}">
-                            <i class="fa fa-trash-alt"></i>
-                        </button>
-                    {% endif %}
-                {% endapply %}
-            </div>
+            {{ block('collection_js_actions') }}
         </h2>
         <div id="{{ id }}-contents" class="accordion-collapse collapse {{ not form.vars.valid ? 'show' }}">
             <div class="accordion-body">
@@ -75,8 +23,4 @@
             </div>
         </div>
     </div>
-{% endblock collection_js_entry_widget %}
-
-{% block collection_entry_widget %}
-    {{ form_widget(form) }}
-{% endblock collection_entry_widget %}
+{% endblock collection_js_accordion_item %}

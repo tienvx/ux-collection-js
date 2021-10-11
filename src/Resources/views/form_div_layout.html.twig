@@ -1,0 +1,86 @@
+{% block collection_js_row %}
+    {%- set controllerName = 'tienvx--ux-collection-js--collection' -%}
+    {%- set dataController = (attr['data-controller']|default('') ~ ' ' ~ controllerName)|trim -%}
+    {% set row_attr = row_attr|merge({
+        'class': attr.class|default('') ~ ' collection-js',
+        'data-controller': dataController,
+        ('data-'~ controllerName ~ '-allow-add-value'): allow_add ? 'true' : 'false',
+        ('data-'~ controllerName ~ '-allow-delete-value'): allow_delete ? 'true' : 'false',
+        ('data-'~ controllerName ~ '-allow-move-up-value'): allow_move_up ? 'true' : 'false',
+        ('data-'~ controllerName ~ '-allow-move-down-value'): allow_move_down ? 'true' : 'false',
+        ('data-'~ controllerName ~ '-prototype-name-value'): prototype_name|default('__name__'),
+        ('data-'~ controllerName ~ '-call-post-add-on-init-value'): call_post_add_on_init ? 'true' : 'false',
+    }) %}
+    {% if ea is defined %}
+        {% set row_attr = row_attr|merge({class: (row_attr.class ~ ' field-collection')|trim}) %}
+    {% endif %}
+
+    {{ block('form_row') }}
+{% endblock collection_js_row %}
+
+{% block collection_js_widget %}
+    {{ block('collection_js_accordion') }}
+
+    {% if allow_add|default(false) %}
+        {{ block('collection_js_add_button') }}
+    {% endif %}
+{% endblock collection_js_widget %}
+
+{% block collection_js_add_button %}
+    <button type="button" class="collection-js-add-btn">
+        {{ 'action.add_new_item'|trans }}
+    </button>
+{% endblock collection_js_add_button %}
+
+{% block collection_js_accordion %}
+    <div class="collection-js-root" data-prototype="{{ form_widget(prototype) | e }}">
+        {% for child in form|filter(child => not child.rendered) %}
+            {{- form_widget(child) -}}
+        {% endfor %}
+    </div>
+{% endblock collection_js_accordion %}
+
+{% block collection_js_entry_widget %}
+    {{ block('collection_js_accordion_item') }}
+{% endblock collection_js_entry_widget %}
+
+{% block collection_js_accordion_item %}
+    <div>
+        <div>{{ value|collection_js_as_string }}</div>
+        {{ block('collection_js_actions') }}
+        <div>
+            {{ form_widget(form) }}
+        </div>
+    </div>
+{% endblock collection_js_accordion_item %}
+
+{% block collection_js_actions %}
+    <div>
+        {% apply spaceless %}
+            {% if form_parent(form).vars.allow_add %}
+                <button type="button" class="collection-js-elem-add">
+                    {{ 'action.add_new_item'|trans }}
+                </button>
+            {% endif %}
+            {% if form_parent(form).vars.allow_move_up %}
+                <button type="button" class="collection-js-elem-up">
+                    {{ 'action.move_item_up'|trans }}
+                </button>
+            {% endif %}
+            {% if form_parent(form).vars.allow_move_down %}
+                <button type="button" class="collection-js-elem-down">
+                    {{ 'action.move_item_down'|trans }}
+                </button>
+            {% endif %}
+            {% if form_parent(form).vars.allow_delete %}
+                <button type="button" class="collection-js-elem-remove">
+                    {{ 'action.remove_item'|trans }}
+                </button>
+            {% endif %}
+        {% endapply %}
+    </div>
+{% endblock collection_js_actions %}
+
+{% block collection_entry_widget %}
+    {{ form_widget(form) }}
+{% endblock collection_entry_widget %}

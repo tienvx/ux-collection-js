@@ -1,0 +1,39 @@
+{% use "form_div_layout.html.twig" %}
+
+{% block collection_js_add_button %}
+    <button type="button" class="btn btn-link collection-js-add-btn">
+        <i class="fa fa-plus pr-1"></i>
+        {{ 'action.add_new_item'|trans }}
+    </button>
+{% endblock collection_js_add_button %}
+
+{% block collection_js_actions %}
+    <div class="btn-group collection-js-actions" role="group" aria-label="Actions">
+        {% apply spaceless %}
+            {% if form_parent(form).vars.allow_add %}
+                <button type="button" class="btn btn-link btn-link-primary collection-js-elem-add"
+                        title="{{ 'action.add_new_item'|trans }}">
+                    <i class="fa fa-plus"></i>
+                </button>
+            {% endif %}
+            {% if form_parent(form).vars.allow_move_up %}
+                <button type="button" class="btn btn-link btn-link-secondary collection-js-elem-up"
+                        title="{{ 'action.move_item_up'|trans }}">
+                    <i class="fa fa-sort-up"></i>
+                </button>
+            {% endif %}
+            {% if form_parent(form).vars.allow_move_down %}
+                <button type="button" class="btn btn-link btn-link-secondary collection-js-elem-down"
+                        title="{{ 'action.move_item_down'|trans }}">
+                    <i class="fa fa-sort-down"></i>
+                </button>
+            {% endif %}
+            {% if form_parent(form).vars.allow_delete %}
+                <button type="button" class="btn btn-link btn-link-danger collection-js-elem-remove"
+                        title="{{ 'action.remove_item'|trans }}">
+                    <i class="fa fa-trash-alt"></i>
+                </button>
+            {% endif %}
+        {% endapply %}
+    </div>
+{% endblock collection_js_actions %}
