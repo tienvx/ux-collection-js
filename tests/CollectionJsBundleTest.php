@@ -32,7 +32,7 @@ class CollectionJsBundleTest extends TestCase
         $kernel->boot();
         $this->assertEquals([
             'form_div_layout.html.twig',
-            '@CollectionJs/bootstrap_5_layout.html.twig',
+            '@CollectionJs/form_div_layout.html.twig',
             'form_theme.html.twig',
         ], $kernel->getContainer()->getParameter('twig.form.resources'));
     }

@@ -19,7 +19,7 @@ class CollectionJsExtension extends Extension implements PrependExtensionInterfa
             return;
         }
 
-        $container->prependExtensionConfig('twig', ['form_themes' => ['@CollectionJs/bootstrap_5_layout.html.twig']]);
+        $container->prependExtensionConfig('twig', ['form_themes' => ['@CollectionJs/form_div_layout.html.twig']]);
     }
 
     public function load(array $configs, ContainerBuilder $container)

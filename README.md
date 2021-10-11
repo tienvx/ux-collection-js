@@ -49,6 +49,19 @@ class PostType extends AbstractType
 }
 ```
 
+Then you need to set the form theme:
+```yaml
+# config/packages/twig.yaml
+twig:
+    form_themes:
+      - '@CollectionJs/bootstrap_5_layout.html.twig'
+```
+
+Available themes:
+- @CollectionJs/bootstrap_5_layout.html.twig
+- @CollectionJs/bootstrap_4_layout.html.twig
+- @CollectionJs/bootstrap_3_layout.html.twig
+
 ### Easyadmin
 
 TBD
