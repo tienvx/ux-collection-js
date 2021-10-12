@@ -30,6 +30,11 @@
     display: flex;
 }
 
+.form-group.collection-js .panel-heading > a[data-toggle="collapse"],
+.form-group.collection-js .card-header > a[data-toggle="collapse"] {
+    text-decoration: none;
+}
+
 .form-group.collection-js .panel-heading > .collection-js-actions,
 .form-group.collection-js .card-header > .collection-js-actions {
     display: inline-flex;
