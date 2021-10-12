@@ -1,7 +1,37 @@
+/* Common */
+.collection-js-accordion-collapse-marker {
+    color: #ced4da; /* gray-400 */
+    margin: 0 8px 0 4px;
+}
+
+.form-group.field-collection [data-toggle="collapse"]:not(.collapsed) i {
+    transform: rotate(90deg);
+}
+
+/* Bootstrap 5 */
 .form-group.collection-js.field-collection .accordion-header {
     padding-right: 0;
 }
 
 .form-group.collection-js .accordion-header {
     display: flex;
+}
+
+/* Bootstrap 3, 4 */
+.form-group.collection-js .panel-heading,
+.form-group.collection-js .card-header {
+    display: flex;
+}
+
+.form-group.collection-js .panel-heading > [data-toggle="collapse"],
+.form-group.collection-js .card-header > [data-toggle="collapse"] {
+    width: 100%;
+    text-align: left;
+    align-items: center;
+    display: flex;
+}
+
+.form-group.collection-js .panel-heading > .collection-js-actions,
+.form-group.collection-js .card-header > .collection-js-actions {
+    display: inline-flex;
 }

@@ -11,12 +11,11 @@
 {% block collection_js_accordion_item %}
     <div class="panel panel-default">
         <div class="panel-heading" role="tab">
-            <h4 class="panel-title">
-                <a class="{{ form.vars.valid ? 'collapsed' }}" role="button" data-toggle="collapse" href="#{{ id }}-contents" aria-expanded="{{ form.vars.valid ? 'false' : 'true' }}">
-                    {{ value|collection_js_as_string }}
-                </a>
-                {{ block('collection_js_actions') }}
-            </h4>
+            <a class="{{ form.vars.valid ? 'collapsed' }}" data-toggle="collapse" href="#{{ id }}-contents" aria-expanded="{{ form.vars.valid ? 'false' : 'true' }}">
+                <i class="fa fa-chevron-right collection-js-accordion-collapse-marker"></i>
+                {{ value|collection_js_as_string }}
+            </a>
+            {{ block('collection_js_actions') }}
         </div>
         <div id="{{ id }}-contents" class="panel-collapse collapse {{ not form.vars.valid ? 'in' }}" role="tabpanel">
             <div class="panel-body">
