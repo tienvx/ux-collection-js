@@ -16,6 +16,15 @@
     display: flex;
 }
 
+.form-group.collection-js .accordion-button:after {
+    /* hides the default collapse marker */
+    display: none;
+}
+
+.form-group.collection-js .accordion-button:not(.collapsed) i {
+    transform: rotate(90deg);
+}
+
 /* Bootstrap 3, 4 */
 .form-group.collection-js .panel-heading,
 .form-group.collection-js .card-header {
