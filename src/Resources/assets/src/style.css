@@ -1,10 +1,9 @@
 /* Common */
 .collection-js-accordion-collapse-marker {
-    color: #ced4da; /* gray-400 */
     margin: 0 8px 0 4px;
 }
 
-.form-group.field-collection [data-toggle="collapse"]:not(.collapsed) i {
+.form-group.collection-js [data-toggle="collapse"]:not(.collapsed) i {
     transform: rotate(90deg);
 }
 
