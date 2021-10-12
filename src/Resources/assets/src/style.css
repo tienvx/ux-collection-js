@@ -7,7 +7,7 @@
     transform: rotate(90deg);
 }
 
-/* Bootstrap 5 */
+/* Bootstrap 5 & Easy Admin */
 .form-group.collection-js.field-collection .accordion-header {
     padding-right: 0;
 }
@@ -23,6 +23,12 @@
 
 .form-group.collection-js .accordion-button:not(.collapsed) i {
     transform: rotate(90deg);
+}
+
+.form-group.collection-js:not(.field-collection) .accordion-button:not(.collapsed) + .collection-js-actions {
+    color: #283848;
+    background-color: #eaecee;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125);
 }
 
 /* Bootstrap 3, 4 */
