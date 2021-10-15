@@ -19,7 +19,7 @@
         </h2>
         <div id="{{ id }}-contents" class="accordion-collapse collapse {{ not form.vars.valid ? 'show' }}">
             <div class="accordion-body">
-                {{ form_widget(form) }}
+                {{ block('collection_js_accordion_item_body') }}
             </div>
         </div>
     </div>

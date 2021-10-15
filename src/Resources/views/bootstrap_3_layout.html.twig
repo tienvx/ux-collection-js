@@ -19,7 +19,7 @@
         </div>
         <div id="{{ id }}-contents" class="panel-collapse collapse {{ not form.vars.valid ? 'in' }}" role="tabpanel">
             <div class="panel-body">
-                {{ form_widget(form) }}
+                {{ block('collection_js_accordion_item_body') }}
             </div>
         </div>
     </div>
