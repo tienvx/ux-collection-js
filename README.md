@@ -64,7 +64,47 @@ Available themes:
 
 ### Easyadmin
 
-TBD
+Create webpack entry:
+
+```javascript
+// webpack.config.js
+.addEntry('stimulus', './assets/stimulus.js')
+```
+
+Then create that javascript file:
+
+```javascript
+// assets/stimulus.js
+
+// start the Stimulus application
+import './bootstrap';
+```
+
+Use the new collection type in the easyadmin controller:
+
+```php
+namespace App\Controller\EasyAdmin;
+
+use Tienvx\UX\CollectionJs\Form\CollectionJsType;
+
+class FormFieldReferenceController extends AbstractCrudController
+{
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            // ...
+            ->setFormThemes(['@EasyAdmin/crud/form_theme.html.twig', '@CollectionJs/bootstrap_5_layout.html.twig']);
+    }
+
+    public function configureFields(string $pageName): iterable
+    {
+        yield CollectionField::new('collectionSimple', 'Collection Field (simple)')
+                ->setFormType(CollectionJsType::class)
+                ->setFormTypeOption('entry_type', CollectionSimpleType::class)
+                ->addWebpackEncoreEntries('stimulus');
+    }
+}
+```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

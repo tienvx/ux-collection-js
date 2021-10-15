@@ -19,7 +19,7 @@
         </div>
         <div id="{{ id }}-contents" class="collapse {{ not form.vars.valid ? 'show' }}">
             <div class="card-body">
-                {{ form_widget(form) }}
+                {{ block('collection_js_accordion_item_body') }}
             </div>
         </div>
     </div>

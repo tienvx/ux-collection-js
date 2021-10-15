@@ -19,19 +19,19 @@
             {% if form_parent(form).vars.allow_move_up %}
                 <button type="button" class="btn btn-link btn-link-secondary collection-js-elem-up"
                         title="{{ 'action.move_item_up'|trans }}">
-                    <i class="fa fa-sort-up"></i>
+                    <i class="fa fa-arrow-up"></i>
                 </button>
             {% endif %}
             {% if form_parent(form).vars.allow_move_down %}
                 <button type="button" class="btn btn-link btn-link-secondary collection-js-elem-down"
                         title="{{ 'action.move_item_down'|trans }}">
-                    <i class="fa fa-sort-down"></i>
+                    <i class="fa fa-arrow-down"></i>
                 </button>
             {% endif %}
             {% if form_parent(form).vars.allow_delete %}
                 <button type="button" class="btn btn-link btn-link-danger collection-js-elem-remove"
                         title="{{ 'action.remove_item'|trans }}">
-                    <i class="fa fa-trash-alt"></i>
+                    <i class="far fa-trash-alt"></i>
                 </button>
             {% endif %}
         {% endapply %}

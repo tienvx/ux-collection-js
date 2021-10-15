@@ -81,6 +81,8 @@
     </div>
 {% endblock collection_js_actions %}
 
-{% block collection_entry_widget %}
-    {{ form_widget(form) }}
-{% endblock collection_entry_widget %}
+{% block collection_js_accordion_item_body %}
+    {% for child in form|filter(child => not child.rendered) %}
+        {{- form_row(child) -}}
+    {% endfor %}
+{% endblock collection_js_accordion_item_body %}
