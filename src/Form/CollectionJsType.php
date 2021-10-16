@@ -25,7 +25,7 @@ class CollectionJsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $entryOptionsNormalizer = function (Options $options, $value) {
-            $value['block_prefix'] = 'collection_js_entry';
+            $value['block_prefix'] = $value['block_prefix'] ?? 'collection_js_entry';
 
             return $value;
         };
