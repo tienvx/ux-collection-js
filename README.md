@@ -2,6 +2,11 @@
 
 UX collection JS is a Symfony bundle providing Symfony UX integration for collection form type with the help from [Symfony Collection JS](https://github.com/ruano-a/symfonyCollectionJs) library.
 
+## Screenshots
+
+![Screenshot Bootstrap 5](./images/collection-js-bootstrap-5.png)
+![Screenshot EasyAdmin](./images/collection-js-easyadmin.png)
+
 ## Installation
 
 UX Collection JS requires PHP 7.4+ and Symfony 4.4+.
