@@ -105,7 +105,14 @@ class FormFieldReferenceController extends AbstractCrudController
     {
         yield CollectionField::new('collectionSimple', 'Collection Field (simple)')
                 ->setFormType(CollectionJsType::class)
-                ->setFormTypeOption('entry_type', CollectionSimpleType::class)
+                ->setFormTypeOptions([
+                    'entry_type' => CollectionSimpleType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'allow_move_up' => true,
+                    'allow_move_down' => true,
+                    'call_post_add_on_init' => true,
+                ])
                 ->addWebpackEncoreEntries('stimulus');
     }
 }
