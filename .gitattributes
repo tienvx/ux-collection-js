@@ -7,3 +7,4 @@
 /.coveralls.yml export-ignore
 /.php_cs export-ignore
 /phpunit.xml.dist export-ignore
+/images export-ignore

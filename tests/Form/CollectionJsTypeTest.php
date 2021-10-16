@@ -14,7 +14,6 @@ class CollectionJsTypeTest extends TypeTestCase
     public function testDefaultOptions()
     {
         $entryOptions = [
-            'label' => true,
             'block_prefix' => 'custom_collection_js_entry',
         ];
         $form = $this->factory
@@ -23,9 +22,7 @@ class CollectionJsTypeTest extends TypeTestCase
                 'entry_options' => $entryOptions,
             ])
         ;
-        $this->assertSame($entryOptions + [
-            'block_name' => 'entry',
-        ], $form->getConfig()->getOption('entry_options'));
+        $this->assertSame($entryOptions, $form->getConfig()->getOption('entry_options'));
 
         $view = $form->createView();
         $this->assertFalse($view->vars['allow_move_up']);
@@ -46,9 +43,7 @@ class CollectionJsTypeTest extends TypeTestCase
             ])
         ;
         $this->assertSame([
-            'label' => false,
             'block_prefix' => 'collection_js_entry',
-            'block_name' => 'entry',
         ], $form->getConfig()->getOption('entry_options'));
 
         $view = $form->createView();

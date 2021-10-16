@@ -2,6 +2,11 @@
 
 UX collection JS is a Symfony bundle providing Symfony UX integration for collection form type with the help from [Symfony Collection JS](https://github.com/ruano-a/symfonyCollectionJs) library.
 
+## Screenshots
+
+![Screenshot Bootstrap 5](./images/collection-js-bootstrap-5.png)
+![Screenshot EasyAdmin](./images/collection-js-easyadmin.png)
+
 ## Installation
 
 UX Collection JS requires PHP 7.4+ and Symfony 4.4+.
@@ -100,7 +105,14 @@ class FormFieldReferenceController extends AbstractCrudController
     {
         yield CollectionField::new('collectionSimple', 'Collection Field (simple)')
                 ->setFormType(CollectionJsType::class)
-                ->setFormTypeOption('entry_type', CollectionSimpleType::class)
+                ->setFormTypeOptions([
+                    'entry_type' => CollectionSimpleType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'allow_move_up' => true,
+                    'allow_move_down' => true,
+                    'call_post_add_on_init' => true,
+                ])
                 ->addWebpackEncoreEntries('stimulus');
     }
 }
