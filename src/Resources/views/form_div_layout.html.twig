@@ -82,7 +82,11 @@
 {% endblock collection_js_actions %}
 
 {% block collection_js_accordion_item_body %}
-    {% for child in form|filter(child => not child.rendered) %}
-        {{- form_row(child) -}}
-    {% endfor %}
+    {% if form|length > 0 %}
+        {% for child in form|filter(child => not child.rendered) %}
+            {{- form_row(child) -}}
+        {% endfor %}
+    {% else %}
+        {{ form_widget(form) }}
+    {% endif %}
 {% endblock collection_js_accordion_item_body %}
