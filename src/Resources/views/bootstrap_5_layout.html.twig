@@ -13,7 +13,7 @@
         <h2 class="accordion-header">
             <button class="accordion-button {{ form.vars.valid ? 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ id }}-contents">
                 <i class="fa fa-chevron-right collection-js-accordion-collapse-marker"></i>
-                {{ value|collection_js_as_string }}
+                {{ block('collection_js_accordion_label') }}
             </button>
             {{ block('collection_js_actions') }}
         </h2>

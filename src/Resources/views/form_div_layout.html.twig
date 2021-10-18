@@ -90,3 +90,7 @@
         {{ form_widget(form) }}
     {% endif %}
 {% endblock collection_js_accordion_item_body %}
+
+{% block collection_js_accordion_label %}
+    <span class="collection-js-accordion-label">{{ value|collection_js_as_string }}</span>
+{% endblock collection_js_accordion_label %}
