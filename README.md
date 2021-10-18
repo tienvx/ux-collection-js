@@ -14,7 +14,7 @@ UX Collection JS requires PHP 7.4+ and Symfony 4.4+.
 Install this bundle using Composer and Symfony Flex:
 
 ```sh
-composer require tienvx/ux-collection-js:^1.0@alpha
+composer require tienvx/ux-collection-js:^1.0@beta
 
 # Don't forget to install the JavaScript dependencies as well and compile
 yarn add --dev '@symfony/stimulus-bridge@^2.0.0'
