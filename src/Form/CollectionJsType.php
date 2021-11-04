@@ -48,6 +48,7 @@ class CollectionJsType extends AbstractType
             'allow_move_down' => $options['allow_move_down'],
             'prototype_name' => $options['prototype_name'],
             'call_post_add_on_init' => $options['call_post_add_on_init'],
+            'collection_id' => uniqid('collection-id-'),
         ]);
     }
 

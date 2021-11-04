@@ -108,21 +108,21 @@ var _default = /*#__PURE__*/function (_Controller) {
 
       if (this.allowAddValue) {
         options = _objectSpread(_objectSpread({}, options), {}, {
-          other_btn_add: this.element.querySelectorAll('.collection-js-add-btn'),
-          btn_add_selector: '.collection-js-elem-add'
+          other_btn_add: this.element.querySelector(".".concat(this.collectionIdValue, ".collection-js-add-btn")),
+          btn_add_selector: ".".concat(this.collectionIdValue, ".collection-js-elem-add")
         });
       }
 
       if (this.allowDeleteValue) {
-        options.btn_delete_selector = '.collection-js-elem-remove';
+        options.btn_delete_selector = ".".concat(this.collectionIdValue, ".collection-js-elem-remove");
       }
 
       if (this.allowMoveUpValue) {
-        options.btn_up_selector = '.collection-js-elem-up';
+        options.btn_up_selector = ".".concat(this.collectionIdValue, ".collection-js-elem-up");
       }
 
       if (this.allowMoveDownValue) {
-        options.btn_down_selector = '.collection-js-elem-down';
+        options.btn_down_selector = ".".concat(this.collectionIdValue, ".collection-js-elem-down");
       }
 
       (0, _symfonyCollectionJs["default"])(this.element.querySelector('.collection-js-root'), options);
@@ -149,5 +149,6 @@ _defineProperty(_default, "values", {
   allowMoveUp: Boolean,
   allowMoveDown: Boolean,
   prototypeName: String,
-  callPostAddOnInit: Boolean
+  callPostAddOnInit: Boolean,
+  collectionId: String
 });
