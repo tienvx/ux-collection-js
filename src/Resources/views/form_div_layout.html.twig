@@ -10,6 +10,7 @@
         ('data-'~ controllerName ~ '-allow-move-down-value'): allow_move_down ? 'true' : 'false',
         ('data-'~ controllerName ~ '-prototype-name-value'): prototype_name|default('__name__'),
         ('data-'~ controllerName ~ '-call-post-add-on-init-value'): call_post_add_on_init ? 'true' : 'false',
+        ('data-'~ controllerName ~ '-collection-id-value'): collection_id,
     }) %}
     {% if ea is defined %}
         {% set row_attr = row_attr|merge({class: (row_attr.class ~ ' field-collection')|trim}) %}
@@ -27,7 +28,7 @@
 {% endblock collection_js_widget %}
 
 {% block collection_js_add_button %}
-    <button type="button" class="collection-js-add-btn">
+    <button type="button" class="{{ form_parent(form).vars.collection_id }} collection-js-add-btn">
         {{ 'action.add_new_item'|trans }}
     </button>
 {% endblock collection_js_add_button %}
@@ -58,22 +59,22 @@
     <div>
         {% apply spaceless %}
             {% if form_parent(form).vars.allow_add %}
-                <button type="button" class="collection-js-elem-add">
+                <button type="button" class="{{ form_parent(form).vars.collection_id }} collection-js-elem-add">
                     {{ 'action.add_new_item'|trans }}
                 </button>
             {% endif %}
             {% if form_parent(form).vars.allow_move_up %}
-                <button type="button" class="collection-js-elem-up">
+                <button type="button" class="{{ form_parent(form).vars.collection_id }} collection-js-elem-up">
                     {{ 'action.move_item_up'|trans }}
                 </button>
             {% endif %}
             {% if form_parent(form).vars.allow_move_down %}
-                <button type="button" class="collection-js-elem-down">
+                <button type="button" class="{{ form_parent(form).vars.collection_id }} collection-js-elem-down">
                     {{ 'action.move_item_down'|trans }}
                 </button>
             {% endif %}
             {% if form_parent(form).vars.allow_delete %}
-                <button type="button" class="collection-js-elem-remove">
+                <button type="button" class="{{ form_parent(form).vars.collection_id }} collection-js-elem-remove">
                     {{ 'action.remove_item'|trans }}
                 </button>
             {% endif %}
