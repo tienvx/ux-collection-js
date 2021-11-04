@@ -28,7 +28,7 @@
 {% endblock collection_js_widget %}
 
 {% block collection_js_add_button %}
-    <button type="button" class="{{ form_parent(form).vars.collection_id }} collection-js-add-btn">
+    <button type="button" class="collection-js-{{ collection_id }}-add-btn">
         {{ 'action.add_new_item'|trans }}
     </button>
 {% endblock collection_js_add_button %}
@@ -59,22 +59,22 @@
     <div>
         {% apply spaceless %}
             {% if form_parent(form).vars.allow_add %}
-                <button type="button" class="{{ form_parent(form).vars.collection_id }} collection-js-elem-add">
+                <button type="button" class="collection-js-{{ form_parent(form).vars.collection_id }}-elem-add">
                     {{ 'action.add_new_item'|trans }}
                 </button>
             {% endif %}
             {% if form_parent(form).vars.allow_move_up %}
-                <button type="button" class="{{ form_parent(form).vars.collection_id }} collection-js-elem-up">
+                <button type="button" class="collection-js-{{ form_parent(form).vars.collection_id }}-elem-up">
                     {{ 'action.move_item_up'|trans }}
                 </button>
             {% endif %}
             {% if form_parent(form).vars.allow_move_down %}
-                <button type="button" class="{{ form_parent(form).vars.collection_id }} collection-js-elem-down">
+                <button type="button" class="collection-js-{{ form_parent(form).vars.collection_id }}-elem-down">
                     {{ 'action.move_item_down'|trans }}
                 </button>
             {% endif %}
             {% if form_parent(form).vars.allow_delete %}
-                <button type="button" class="{{ form_parent(form).vars.collection_id }} collection-js-elem-remove">
+                <button type="button" class="collection-js-{{ form_parent(form).vars.collection_id }}-elem-remove">
                     {{ 'action.remove_item'|trans }}
                 </button>
             {% endif %}

@@ -26,7 +26,7 @@ describe('CollectionJsController', () => {
                 data-collection-js-allow-move-up-value="true"
                 data-collection-js-allow-move-down-value="true"
                 data-collection-js-call-post-add-on-init-value="true"
-                data-collection-js-collection-id-value="collection-id-618407d4bfa41"
+                data-collection-js-collection-id-value="618407d4bfa41"
             >
                 <div
                     class="accordion collection-js-root"
@@ -36,10 +36,10 @@ describe('CollectionJsController', () => {
                         <i class=&quot;fas fw fa-chevron-right form-collection-item-collapse-marker&quot;></i>
                         </button>
                         <div class=&quot;btn-group collection-js-actions&quot; role=&quot;group&quot; aria-label=&quot;Actions&quot;>
-                        <button type=&quot;button&quot; class=&quot;btn btn-link btn-link-primary collection-id-618407d4bfa41 collection-js-elem-add&quot; title=&quot;Add a new item&quot;><i class=&quot;fa fa-plus&quot;></i></button>
-                        <button type=&quot;button&quot; class=&quot;btn btn-link btn-link-secondary collection-id-618407d4bfa41 collection-js-elem-up&quot; title=&quot;Move item up&quot;><i class=&quot;fa fa-sort-up&quot;></i></button>
-                        <button type=&quot;button&quot; class=&quot;btn btn-link btn-link-secondary collection-id-618407d4bfa41 collection-js-elem-down&quot; title=&quot;Move item down&quot;><i class=&quot;fa fa-sort-down&quot;></i></button>
-                        <button type=&quot;button&quot; class=&quot;btn btn-link btn-link-danger collection-id-618407d4bfa41 collection-js-elem-remove&quot; title=&quot;Remove the item&quot;><i class=&quot;fa fa-trash-alt&quot;></i></button>
+                        <button type=&quot;button&quot; class=&quot;btn btn-link btn-link-primary collection-js-618407d4bfa41-elem-add&quot; title=&quot;Add a new item&quot;><i class=&quot;fa fa-plus&quot;></i></button>
+                        <button type=&quot;button&quot; class=&quot;btn btn-link btn-link-secondary collection-js-618407d4bfa41-elem-up&quot; title=&quot;Move item up&quot;><i class=&quot;fa fa-sort-up&quot;></i></button>
+                        <button type=&quot;button&quot; class=&quot;btn btn-link btn-link-secondary collection-js-618407d4bfa41-elem-down&quot; title=&quot;Move item down&quot;><i class=&quot;fa fa-sort-down&quot;></i></button>
+                        <button type=&quot;button&quot; class=&quot;btn btn-link btn-link-danger collection-js-618407d4bfa41-elem-remove&quot; title=&quot;Remove the item&quot;><i class=&quot;fa fa-trash-alt&quot;></i></button>
                         </div>
                         </h2>
                         <div class=&quot;accordion-collapse collapse show&quot; style=&quot;&quot; id=&quot;tags___name__-contents&quot;>
@@ -55,10 +55,10 @@ describe('CollectionJsController', () => {
                             <i class="fas fw fa-chevron-right form-collection-item-collapse-marker"></i>
                             </button>
                             <div class="btn-group collection-js-actions" role="group" aria-label="Actions">
-                                <button type="button" class="btn btn-link btn-link-primary collection-id-618407d4bfa41 collection-js-elem-add" title="Add a new item"><i class="fa fa-plus"></i></button>
-                                <button type="button" class="btn btn-link btn-link-secondary collection-id-618407d4bfa41 collection-js-elem-up" title="Move item up"><i class="fa fa-sort-up"></i></button>
-                                <button type="button" class="btn btn-link btn-link-secondary collection-id-618407d4bfa41 collection-js-elem-down" title="Move item down"><i class="fa fa-sort-down"></i></button>
-                                <button type="button" class="btn btn-link btn-link-danger collection-id-618407d4bfa41 collection-js-elem-remove" title="Remove the item"><i class="fa fa-trash-alt"></i></button>
+                                <button type="button" class="btn btn-link btn-link-primary collection-js-618407d4bfa41-elem-add" title="Add a new item"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-link btn-link-secondary collection-js-618407d4bfa41-elem-up" title="Move item up"><i class="fa fa-sort-up"></i></button>
+                                <button type="button" class="btn btn-link btn-link-secondary collection-js-618407d4bfa41-elem-down" title="Move item down"><i class="fa fa-sort-down"></i></button>
+                                <button type="button" class="btn btn-link btn-link-danger collection-js-618407d4bfa41-elem-remove" title="Remove the item"><i class="fa fa-trash-alt"></i></button>
                             </div>
                         </h2>
                         <div class="accordion-collapse collapse show" style="" id="tags_0-contents">
@@ -68,7 +68,7 @@ describe('CollectionJsController', () => {
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-link collection-id-618407d4bfa41 collection-js-add-btn">
+                <button type="button" class="btn btn-link collection-js-618407d4bfa41-add-btn">
                     <i class="fa fa-plus pr-1"></i>
                     Add a new item
                 </button>
@@ -107,7 +107,7 @@ describe('CollectionJsController', () => {
         await startStimulus();
 
         // Click the add button
-        container.querySelector('.collection-js-add-btn').click();
+        container.querySelector('.collection-js-618407d4bfa41-add-btn').click();
 
         await waitFor(() => expect(container.querySelectorAll('.accordion-item').length).toBe(2));
 
@@ -128,7 +128,7 @@ describe('CollectionJsController', () => {
         await startStimulus();
 
         // Click the element add button
-        container.querySelector('.collection-js-elem-add').click();
+        container.querySelector('.collection-js-618407d4bfa41-elem-add').click();
 
         await waitFor(() => expect(container.querySelectorAll('.accordion-item').length).toBe(2));
 
@@ -149,7 +149,7 @@ describe('CollectionJsController', () => {
         await startStimulus();
 
         // Click the element remove button
-        container.querySelector('.collection-js-elem-remove').click();
+        container.querySelector('.collection-js-618407d4bfa41-elem-remove').click();
 
         await waitFor(() => expect(container.querySelectorAll('.accordion-item').length).toBe(0));
 
@@ -171,8 +171,8 @@ describe('CollectionJsController', () => {
         await startStimulus();
 
         // Click the add button, then element up button
-        container.querySelector('.collection-js-add-btn').click();
-        container.querySelectorAll('.collection-js-elem-up')[1].click();
+        container.querySelector('.collection-js-618407d4bfa41-add-btn').click();
+        container.querySelectorAll('.collection-js-618407d4bfa41-elem-up')[1].click();
 
         await waitFor(() => expect(container.querySelectorAll('.accordion-item').length).toBe(2));
 
@@ -193,8 +193,8 @@ describe('CollectionJsController', () => {
         await startStimulus();
 
         // Click the add button, then element down button
-        container.querySelector('.collection-js-add-btn').click();
-        container.querySelectorAll('.collection-js-elem-down')[0].click();
+        container.querySelector('.collection-js-618407d4bfa41-add-btn').click();
+        container.querySelectorAll('.collection-js-618407d4bfa41-elem-down')[0].click();
 
         await waitFor(() => expect(container.querySelectorAll('.accordion-item').length).toBe(2));
 

@@ -1,7 +1,7 @@
 {% use "@CollectionJs/form_div_layout.html.twig" %}
 
 {% block collection_js_add_button %}
-    <button type="button" class="btn btn-link {{ form_parent(form).vars.collection_id }} collection-js-add-btn">
+    <button type="button" class="btn btn-link collection-js-{{ collection_id }}-add-btn">
         <i class="fa fa-plus pr-1"></i>
         {{ 'action.add_new_item'|trans }}
     </button>
@@ -11,25 +11,25 @@
     <div class="btn-group collection-js-actions" role="group" aria-label="Actions">
         {% apply spaceless %}
             {% if form_parent(form).vars.allow_add %}
-                <button type="button" class="btn btn-link btn-link-primary {{ form_parent(form).vars.collection_id }} collection-js-elem-add"
+                <button type="button" class="btn btn-link btn-link-primary collection-js-{{ form_parent(form).vars.collection_id }}-elem-add"
                         title="{{ 'action.add_new_item'|trans }}">
                     <i class="fa fa-plus"></i>
                 </button>
             {% endif %}
             {% if form_parent(form).vars.allow_move_up %}
-                <button type="button" class="btn btn-link btn-link-secondary {{ form_parent(form).vars.collection_id }} collection-js-elem-up"
+                <button type="button" class="btn btn-link btn-link-secondary collection-js-{{ form_parent(form).vars.collection_id }}-elem-up"
                         title="{{ 'action.move_item_up'|trans }}">
                     <i class="fa fa-arrow-up"></i>
                 </button>
             {% endif %}
             {% if form_parent(form).vars.allow_move_down %}
-                <button type="button" class="btn btn-link btn-link-secondary {{ form_parent(form).vars.collection_id }} collection-js-elem-down"
+                <button type="button" class="btn btn-link btn-link-secondary collection-js-{{ form_parent(form).vars.collection_id }}-elem-down"
                         title="{{ 'action.move_item_down'|trans }}">
                     <i class="fa fa-arrow-down"></i>
                 </button>
             {% endif %}
             {% if form_parent(form).vars.allow_delete %}
-                <button type="button" class="btn btn-link btn-link-danger {{ form_parent(form).vars.collection_id }} collection-js-elem-remove"
+                <button type="button" class="btn btn-link btn-link-danger collection-js-{{ form_parent(form).vars.collection_id }}-elem-remove"
                         title="{{ 'action.remove_item'|trans }}">
                     <i class="far fa-trash-alt"></i>
                 </button>
