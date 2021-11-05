@@ -35,18 +35,18 @@ export default class extends Controller {
         if (this.allowAddValue) {
             options = {
                 ...options,
-                other_btn_add: this.element.querySelector(`.${this.collectionIdValue}.collection-js-add-btn`),
-                btn_add_selector: `.${this.collectionIdValue}.collection-js-elem-add`,
+                other_btn_add: this.element.querySelector(`.collection-js-${this.collectionIdValue}-add-btn`),
+                btn_add_selector: `.collection-js-${this.collectionIdValue}-elem-add`,
             };
         }
         if (this.allowDeleteValue) {
-            options.btn_delete_selector = `.${this.collectionIdValue}.collection-js-elem-remove`;
+            options.btn_delete_selector = `.collection-js-${this.collectionIdValue}-elem-remove`;
         }
         if (this.allowMoveUpValue) {
-            options.btn_up_selector = `.${this.collectionIdValue}.collection-js-elem-up`;
+            options.btn_up_selector = `.collection-js-${this.collectionIdValue}-elem-up`;
         }
         if (this.allowMoveDownValue) {
-            options.btn_down_selector = `.${this.collectionIdValue}.collection-js-elem-down`;
+            options.btn_down_selector = `.collection-js-${this.collectionIdValue}-elem-down`;
         }
 
         formCollection(this.element.querySelector('.collection-js-root'), options);
