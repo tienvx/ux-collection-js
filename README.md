@@ -38,8 +38,8 @@ class PostType extends AbstractType
     {
         $builder
             // ...
-            ->add('attachments', CollectionJsType::class, [
-                'entry_type' => FileType::class,
+            ->add('authors', CollectionJsType::class, [
+                'entry_type' => TextType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'allow_move_up' => true,

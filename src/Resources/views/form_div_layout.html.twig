@@ -34,12 +34,14 @@
 {% endblock collection_js_add_button %}
 
 {% block collection_js_accordion %}
-    <div class="collection-js-root" data-prototype="{{ form_widget(prototype) | e }}">
+    <div class="{{ block('collection_js_accordion_class') }} collection-js-root" data-prototype="{{ form_widget(prototype) | e }}">
         {% for child in form|filter(child => not child.rendered) %}
             {{- form_widget(child) -}}
         {% endfor %}
     </div>
 {% endblock collection_js_accordion %}
+
+{% block collection_js_accordion_class %}{% endblock collection_js_accordion_class %}
 
 {% block collection_js_entry_widget %}
     {{ block('collection_js_accordion_item') }}
