@@ -2,8 +2,10 @@
 
 namespace Tienvx\UX\CollectionJs\Tests\Form;
 
+use Symfony\Component\Form\Exception\InvalidConfigurationException;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Tienvx\UX\CollectionJs\Form\CollectionJsType;
 
@@ -51,5 +53,29 @@ class CollectionJsTypeTest extends TypeTestCase
         $this->assertTrue($view->vars['allow_move_down']);
         $this->assertTrue($view->vars['call_post_add_on_init']);
         $this->assertSame('__test__', $view->vars['prototype_name']);
+    }
+
+    public function testDontAllowAdd()
+    {
+        $form = $this->factory
+            ->create(static::TESTED_TYPE, null, [
+                'entry_type' => TextType::class,
+                'allow_add' => false,
+            ])
+        ;
+
+        $view = $form->createView();
+        $this->assertInstanceOf(FormView::class, $view->vars['prototype']);
+    }
+
+    public function testDisablePrototype()
+    {
+        $this->expectExceptionObject(new InvalidConfigurationException(sprintf('You must enable prototype for form type %s.', static::TESTED_TYPE)));
+        $this->factory
+            ->create(static::TESTED_TYPE, null, [
+                'entry_type' => TextType::class,
+                'prototype' => false,
+            ])
+        ;
     }
 }
