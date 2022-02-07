@@ -38,6 +38,10 @@ class CollectionJsTypeTest extends TypeTestCase
         $form = $this->factory
             ->create(static::TESTED_TYPE, null, [
                 'entry_type' => TextType::class,
+                'prototype' => true,
+                'prototype_data' => 'New Tag Placeholder',
+                'allow_add' => false,
+                'allow_delete' => false,
                 'allow_move_up' => true,
                 'allow_move_down' => true,
                 'call_post_add_on_init' => true,
@@ -49,23 +53,11 @@ class CollectionJsTypeTest extends TypeTestCase
         ], $form->getConfig()->getOption('entry_options'));
 
         $view = $form->createView();
+        $this->assertInstanceOf(FormView::class, $view->vars['prototype']);
         $this->assertTrue($view->vars['allow_move_up']);
         $this->assertTrue($view->vars['allow_move_down']);
         $this->assertTrue($view->vars['call_post_add_on_init']);
         $this->assertSame('__test__', $view->vars['prototype_name']);
-    }
-
-    public function testDontAllowAdd()
-    {
-        $form = $this->factory
-            ->create(static::TESTED_TYPE, null, [
-                'entry_type' => TextType::class,
-                'allow_add' => false,
-            ])
-        ;
-
-        $view = $form->createView();
-        $this->assertInstanceOf(FormView::class, $view->vars['prototype']);
     }
 
     public function testDisablePrototype()
