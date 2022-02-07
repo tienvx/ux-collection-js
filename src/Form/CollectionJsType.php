@@ -3,7 +3,9 @@
 namespace Tienvx\UX\CollectionJs\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Exception\InvalidConfigurationException;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
@@ -17,6 +19,28 @@ class CollectionJsType extends AbstractType
     public function getParent(): string
     {
         return CollectionType::class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        if (!$options['prototype']) {
+            throw new InvalidConfigurationException(sprintf('You must enable prototype for form type %s.', self::class));
+        }
+
+        $prototypeOptions = array_replace([
+            'required' => $options['required'],
+            'label' => $options['prototype_name'] . 'label__',
+        ], $options['entry_options']);
+
+        if (null !== $options['prototype_data']) {
+            $prototypeOptions['data'] = $options['prototype_data'];
+        }
+
+        $prototype = $builder->create($options['prototype_name'], $options['entry_type'], $prototypeOptions);
+        $builder->setAttribute('prototype', $prototype->getForm());
     }
 
     /**

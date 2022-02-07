@@ -1,13 +1,5 @@
 {% use "@CollectionJs/bootstrap_base_layout.html.twig" %}
 
-{% block collection_js_accordion %}
-    <div class="collection-js-root" data-prototype="{{ form_widget(prototype) | e }}">
-        {% for child in form|filter(child => not child.rendered) %}
-            {{- form_widget(child) -}}
-        {% endfor %}
-    </div>
-{% endblock collection_js_accordion %}
-
 {% block collection_js_accordion_item %}
     <div class="card">
         <div class="card-header">
