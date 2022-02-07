@@ -40,6 +40,7 @@ class PostType extends AbstractType
             // ...
             ->add('authors', CollectionJsType::class, [
                 'entry_type' => TextType::class,
+                'prototype' => true,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'allow_move_up' => true,
