@@ -4,6 +4,7 @@ UX collection JS is a Symfony bundle providing Symfony UX integration for collec
 
 ## Screenshots
 
+![Screenshot Bootstrap 3](./images/collection-js-bootstrap-3.png)
 ![Screenshot Bootstrap 5](./images/collection-js-bootstrap-5.png)
 ![Screenshot EasyAdmin](./images/collection-js-easyadmin.png)
 
@@ -115,6 +116,55 @@ class FormFieldReferenceController extends AbstractCrudController
                     'call_post_add_on_init' => true,
                 ])
                 ->addWebpackEncoreEntries('stimulus');
+    }
+}
+```
+
+## Configuration
+
+| Config name            | Description                                       | Type     | Default |
+|------------------------|---------------------------------------------------|----------|---------|
+| prototype              | CollectionJsType form type need prototype = true  | Boolean  | true    |
+| allow_add              | Allow show/hide 'Add a new item' button           | Boolean  | false   |
+| allow_delete           | Allow show/hide 'Remove the item' button          | Boolean  | false   |
+| allow_move_up          | Allow show/hide 'Move item up' button             | Boolean  | false   |
+| allow_move_down        | Allow show/hide 'Move item down' button           | Boolean  | false   |
+| call_post_add_on_init  | Trigger 'ux-collection-js:post-add' event on init | Boolean  | false   |
+
+## Stimulus Events
+
+| Namespace          | Event       | Description                 | Detail                       |
+|--------------------|-------------|-----------------------------|------------------------------|
+| ux-collection-js   | post-add    | After an item is added      | new_elem, context, index     |
+| ux-collection-js   | post-delete | After an item is removed    | delete_elem, context, index  |
+| ux-collection-js   | post-up     | After an item is moved up   | elem, switched_elem, index   |
+| ux-collection-js   | post-down   | After an item is moved down | elem, switched_elem, index   |
+
+### Example
+
+```php
+// SomeController.php
+$form = $this->createFormBuilder($task)
+    ->add('some_field', SomeType::class, [
+        'attr' => [
+            'data-controller' => 'items',
+            'data-action' => 'ux-collection-js:post-add->items#postAdd ux-collection-js:post-delete->items#postDelete ',
+        ],
+    ])
+    ->getForm();
+```
+
+```js
+// items_controller.js
+import { Controller } from 'stimulus';
+
+export default class extends Controller {
+    deleteItem(event) {
+        const { delete_elem, context, index } = event.detail;
+    }
+
+    addItem(event) {
+        const { new_elem, context, index } = event.detail;
     }
 }
 ```
