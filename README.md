@@ -159,11 +159,11 @@ $form = $this->createFormBuilder($task)
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
-    deleteItem(event) {
+    postDelete(event) {
         const { delete_elem, context, index } = event.detail;
     }
 
-    addItem(event) {
+    postAdd(event) {
         const { new_elem, context, index } = event.detail;
     }
 }
