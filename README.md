@@ -4,8 +4,11 @@ UX collection JS is a Symfony bundle providing Symfony UX integration for collec
 
 ## Screenshots
 
+### Bootstrap 3
 ![Screenshot Bootstrap 3](./images/collection-js-bootstrap-3.png)
+### Bootstrap 5
 ![Screenshot Bootstrap 5](./images/collection-js-bootstrap-5.png)
+### EasyAdmin
 ![Screenshot EasyAdmin](./images/collection-js-easyadmin.png)
 
 ## Installation
