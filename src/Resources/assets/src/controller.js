@@ -1,6 +1,6 @@
 'use strict';
 
-import { Controller } from 'stimulus';
+import { Controller } from '@hotwired/stimulus';
 import formCollection from 'symfony-collection-js';
 
 export default class extends Controller {
