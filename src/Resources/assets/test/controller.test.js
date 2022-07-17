@@ -1,6 +1,6 @@
 'use strict';
 
-import { Application } from 'stimulus';
+import { Application } from '@hotwired/stimulus';
 import { getByTestId, waitFor } from '@testing-library/dom';
 import { clearDOM, mountDOM } from '@symfony/stimulus-testing';
 import CollectionJsController from '../dist/controller';
