@@ -18,8 +18,6 @@ jobs:
 
             - name: Install PHP dependencies
               uses: ramsey/composer-install@v1
-              with:
-                  dependency-versions: 'locked'
 
             - name: Run PHP CS Fixer
               run: php-cs-fixer fix --diff --dry-run
@@ -51,7 +49,7 @@ jobs:
         strategy:
             matrix:
                 php-versions: ['7.4', '8.0', '8.1']
-                dependencies: [ 'lowest', 'locked', 'highest' ]
+                dependencies: [ 'lowest', 'highest' ]
         name: PHP ${{ matrix.php-versions }} with ${{ matrix.dependencies }} dependencies
         steps:
             - name: Setup PHP
@@ -78,7 +76,7 @@ jobs:
               run: |
                   composer global require php-coveralls/php-coveralls
                   php-coveralls --coverage_clover=clover.xml -v
-              if: matrix.php-versions == '8.0' && matrix.dependencies == 'locked'
+              if: matrix.php-versions == '8.0' && matrix.dependencies == 'highest'
 
     test-js:
         runs-on: ubuntu-latest
